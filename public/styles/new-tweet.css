@@ -8,7 +8,7 @@ button {
 }
 
 /* new tweet textarea formatting */
-textarea {
+#tweet-text {
   outline: none;
   overflow: hidden;
   display: block;
