@@ -18,14 +18,14 @@ $(document).ready(() => {
         //For each element in the tree, get the first element that matches the selector by testing the element itself and traversing up through its ancestors in the DOM tree.
         .closest(".new-tweet")
         .find(".counter")
-        .removeClass('.limit-reached')
+        .removeClass('limit-reached')
         .text(charLimit - charCount);
     } else {
       //counter should be red above 140 characters
       $(this)
         .closest(".new-tweet")
         .find(".counter")
-        .addClass('.limit-reached')
+        .addClass('limit-reached')
         .text(charLimit - charCount);
     }
   });

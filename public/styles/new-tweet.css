@@ -24,8 +24,14 @@ button {
   width: 100%;
 } 
 
+
 .counter {
   font-family: 'Bungee', "sans-serif";
+}
+
+/* dynamicly apply when character limit of 140 is reached*/
+.limit-reached {
+  color: #ff0000;
 }
 
 /* generic classes */
