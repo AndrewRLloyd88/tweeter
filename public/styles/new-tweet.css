@@ -1,0 +1,46 @@
+/* styling the tweet button */
+button {
+  border: none;
+  font-size: medium;
+  font-family: "Bungee", "sans-serif";
+  background-color:#4056A1;
+  color: #ffffff;
+}
+
+/* new tweet textarea formatting */
+textarea {
+  outline: none;
+  overflow: hidden;
+  display: block;
+  resize: none;
+  border: none;
+  border-bottom: solid;
+  background-color: #f4f1ec;
+  font-family: "Source Sans Pro", "sans-serif";
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 5px;
+  height: 30px;
+  width: 100%;
+} 
+
+.counter {
+  font-family: 'Bungee', "sans-serif";
+}
+
+/* generic classes */
+.flex-row {
+  display: flex;
+}
+
+.space-around {
+  align-content: space-around;
+}
+
+.margin-top {
+  margin-top: 15px;
+}
+
+.bold {
+  font-weight: bold;
+}

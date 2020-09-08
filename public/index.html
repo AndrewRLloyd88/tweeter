@@ -22,6 +22,9 @@
   <!-- Header CSS -->
   <link rel="stylesheet" href="/styles/header.css" type="text/css" />
 
+  <!-- Tweet Form -->
+  <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+
   <!-- External JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -45,33 +48,34 @@
     </div>
   </nav>
 
-   <!-- Header -->
+  <!-- Header -->
   <header class="page-header">
     <div>
-        <img src="/images/profile-hex.png"> 
+      <img src="/images/profile-hex.png">
     </div>
     <br>
     <div>
-        <h2 class="name"><span class="bold name">Andrew</span> Lloyd</h2>
+      <h2 class="name"><span class="bold name">Andrew</span> Lloyd</h2>
     </div>
   </header>
-  
+
   <!-- Page-specific (main) content here -->
   <main class="container">
     <section class="new-tweet">
       <h2>Compose Tweet</h2>
       <form action="/tweets" method="POST">
-        <label for="tweet-text">What are you humming about?</label>
+        <label for="tweet-text" class="bold">What are you humming about?</label>
         <textarea name="text" id="tweet-text"></textarea>
-        <div>
+        <div class="flex-row space-between margin-top">
           <button type="submit">Tweet</button>
           <output name="counter" class="counter" for="tweet-text">140</output>
         </div>
       </form>
     </section>
-  <h3>This is my tweet</h3>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus eius illo veniam nisi blanditiis quos voluptas iste excepturi asperiores sequi modi facilis natus nam consequuntur, aliquid ullam odit, nihil id.</p>
-</main>
+    <h3>This is my tweet</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus eius illo veniam nisi blanditiis quos
+      voluptas iste excepturi asperiores sequi modi facilis natus nam consequuntur, aliquid ullam odit, nihil id.</p>
+  </main>
 </body>
 
 </html>
