@@ -109,7 +109,7 @@ $(document).ready(() => {
 
 
   //takes in a tweet object and it returns a tweet article
-  const createTweetElement = function(tweetObject) {
+  const createTweetElement = function (tweetObject) {
     //breaking our tweet object into
     const { name, avatars, handle } = tweetObject.user;
     const content = tweetObject.content.text;
@@ -119,29 +119,54 @@ $(document).ready(() => {
     //needed to distinguish between today/day/days when displaying created x day ago
     // let dayFormat = "days";
     //create our html from our tweet template
-    let $tweet = $(
-      `<article class="indiv-tweet">
-      <header class="padding-20">
-      <img class="avatar" src=${avatars}> 
-      <div>${name}</div>
-      <div class="handle">${handle}</div>
+    //styling for article
+    const $article = $('<article>').addClass('indiv-tweet').append('</article>');
 
-      </header>
-      <main>
-        ${content}
-      </main>
-      <footer class="padding-20">
-        <div class="date-actions">
-          ${days}
-          <div class="tweet-icons">
-            <i class="fas fa-flag"></i>
-            <i class='fas fa-retweet'></i>
-            <i class='fas fa-heart'></i>
-          </div>
-        </div>
-      </footer>
-    </article>`);
+    //styling for header
+    const $header = $('<header>').addClass('padding-20').append('</header>');
+    const $avatar = $('<img>').attr("src", avatars).addClass("avatar");
+    const $name = $('<div>' + name + '</div>');
+    const $handle = $('<div>').addClass('handle').text(handle).append('</div>');
 
+    //appending all necessary elements in correct order for header
+    $header.append($avatar, $name, $handle)
+  
+    //styling main body of tweet
+    const $main = $('<main>').text(content).append('</main>');
+
+    //styling footer of tweet
+    const $footer = $('<footer>').addClass('padding-20').append('</footer>');
+    const $dateActions = $('<div>').addClass('date-actions').text(days).append('</div>');
+    const $tweetIcons = $('<div>').addClass('tweet-icons').append('</div>')
+    const $flag = $('<i>').addClass('fas fa-flag').append('</i>');
+    const $retweet = $('<i>').addClass('fas fa-retweet').append('</i>');
+    const $heart = $('<i>').addClass('fas fa-heart').append('</i>');
+
+    //individual icons live in a div with class "tweet-icons" for flex to work
+    $tweetIcons.append($flag, $retweet, $heart)
+    //appending tweetIcons div to dateActions
+    $dateActions.append($tweetIcons);
+    //appending the datestamp and icons to footer
+    $footer.append($dateActions);
+
+
+    //   <footer class="padding-20">
+    //     <div class="date-actions">
+    //       ${days}
+    //       <div class="tweet-icons">
+    //         <i class="fas fa-flag"></i>
+    //         <i class='fas fa-retweet'></i>
+    //         <i class='fas fa-heart'></i>
+    //       </div>
+    //     </div>
+    //   </footer>
+    // </article>);
+    const $tweet = $($article
+      .append($header)
+      .append($main)
+      .append($footer)
+      // .append($endHeader)
+    );
     // console.log(name, avatars, handle, days, timeStamp, content)
     //return
     return $tweet;
@@ -154,7 +179,7 @@ $(document).ready(() => {
   //     const postedData = $.ajaxPost('/tweets', post)
 
   // //  
-  //     });
+  // });
 
 
   // const $tweet = createTweetElement();
