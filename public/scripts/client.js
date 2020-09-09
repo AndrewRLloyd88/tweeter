@@ -33,64 +33,18 @@ const formatDay = (days) => {
 $(document).ready(() => {
   //hard coded object for testing, will be superceded by AJAX request to JSON
   // Fake data taken from initial-tweets.json
-  const data = [
-    {
-      "user": {
-        "name": "Newton",
-        "avatars": "https://i.imgur.com/73hZDYK.png"
-        ,
-        "handle": "@SirIsaac"
-      },
-      "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-      "created_at": 1461116232227
-    },
-    {
-      "user": {
-        "name": "Descartes",
-        "avatars": "https://i.imgur.com/nlhLi3I.png",
-        "handle": "@rd"
-      },
-      "content": {
-        "text": "Je pense , donc je suis"
-      },
-      "created_at": 1461113959088
-    },
-    {
-      "user": {
-        "name": "Gary Andreini",
-        "handle": "@MrAndreini48",
-        "avatars": "https://i.imgur.com/5fUVPRP.png"
-      },
-      "content": {
-        "text": " Gott ist tot“ (help·info); also known as The Death of God) is a widely quoted statement by German philosopher Friedrich Nietzsche."
-      },
-      "created_at": 1599625086506
-    },
-    {
-      "user": {
-        "name": "Misutā Supākoru",
-        "handle": "@MrSparkaru1989",
-        "avatars": "https://i.imgur.com/5fUVPRP.png"
-      },
-      "content": {
-        "text": " I am a fish and I am okay"
-      },
-      "created_at": 1599515086506
-    },
-    {
-      "user": {
-        "name": "Señor Coconut",
-        "handle": "@SeñorCoconut",
-        "avatars": "https://i.imgur.com/5fUVPRP.png"
-      },
-      "content": {
-        "text": " 'Germans are probably funny people' - Uwe Schmidt, 2000"
-      },
-      "created_at": 1599415086506
-    }
-  ];
+
+  //loadTweets - uses AJAX to fetch(GET) the data from our /tweets route
+  const loadTweets = () => {
+    //make a GET request to /tweets
+    $.get('/tweets', function(data) {
+      console.log(data);
+      renderTweets(data);
+    });
+  }
+
+  loadTweets();
+
 
   //loops through tweets, calls createTweetElement for each tweet
   const renderTweets = (tweets) => {
@@ -109,7 +63,7 @@ $(document).ready(() => {
 
 
   //takes in a tweet object and it returns a tweet article
-  const createTweetElement = function (tweetObject) {
+  const createTweetElement = function(tweetObject) {
     //breaking our tweet object into
     const { name, avatars, handle } = tweetObject.user;
     const content = tweetObject.content.text;
@@ -117,7 +71,7 @@ $(document).ready(() => {
     const timeStamp = new Date(tweetObject.created_at);
     //format day into today, 1 day ago or x days ago
     const days = getDaysCreatedAgo(timeStamp);
-
+ 
     //create our html from our tweet template
     //styling for article
     const $article = $('<article>').addClass('indiv-tweet').append('</article>');
@@ -130,7 +84,7 @@ $(document).ready(() => {
 
     //appending all necessary elements in correct order for header
     $header.append($avatar, $name, $handle);
-
+  
     //styling main body of tweet
     const $main = $('<main>').text(content).append('</main>');
 
@@ -161,22 +115,22 @@ $(document).ready(() => {
 
   // when the form is submitted
   //grabbing the form element on the dom
-  const $tweetForm = $('#tweet-form');
-  //grabbing the input field on the dom
-  const $tweetText = $('#tweet-text')
+    const $tweetForm = $('#tweet-form');
+    //grabbing the input field on the dom
+    const $tweetText = $('#tweet-text')
 
-  $tweetForm.on('submit', function (event) {
-    //prevent the default browser behaviour
-    event.preventDefault();
-    // serialize the form data for submission to the server
-    const post = $(this).serialize()
-    // submit serialized data to the server via a POST request to `/tweets`
-    $.post('/tweets', post)
+    $tweetForm.on('submit', function (event) {
+      //prevent the default browser behaviour
+      event.preventDefault();
+       // serialize the form data for submission to the server
+      const post = $(this).serialize()
+      // submit serialized data to the server via a POST request to `/tweets`
+      $.post('/tweets', post)
       .then((response) => {
         //logging out the response of the promise
         console.log(response);
         //re-render the tweets
-        renderTweets(data)
+        loadTweets();
         //clear the form after submission
         $tweetText.val('');
       });
@@ -187,6 +141,5 @@ $(document).ready(() => {
   // const $tweet = createTweetElement(tweetObject);
   // console.log($tweet)
   // $('#tweet-container').append($tweet);
-  renderTweets(data);
 
 });
