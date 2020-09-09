@@ -57,7 +57,7 @@ $(document).ready(() => {
       // calls createTweetElement for each tweet
       const $tweet = createTweetElement(tweet);
       // takes return value and appends it to the tweets container
-      tweetContainer.append($tweet);
+      tweetContainer.prepend($tweet);
     }
   };
 
