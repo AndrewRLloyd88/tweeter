@@ -92,15 +92,18 @@ $(document).ready(() => {
     }
   ];
 
-
   //loops through tweets, calls createTweetElement for each tweet
   const renderTweets = (tweets) => {
-    // loops through tweets
+    // declare object to append to here
+    const tweetContainer = $('#tweet-container')
+    //empty tweet container
+    tweetContainer.empty()
+    // loop through tweets
     for (const tweet of tweets) {
       // calls createTweetElement for each tweet
       const $tweet = createTweetElement(tweet);
       // takes return value and appends it to the tweets container
-      $('#tweet-container').append($tweet);
+      tweetContainer.append($tweet);
     }
   };
 
@@ -143,6 +146,15 @@ $(document).ready(() => {
     //return
     return $tweet;
   };
+
+  // //when the button is clicked
+  //   $('button').click(function (event) {
+  //     event.preventDefault();
+  //     const post = $('form').serialize()
+  //     const postedData = $.ajaxPost('/tweets', post)
+
+  // //  
+  //     });
 
 
   // const $tweet = createTweetElement();
