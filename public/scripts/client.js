@@ -4,8 +4,17 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-$(document).ready(() => {
+//helper function to format the timestamp into days comparing against today's date 
+const getDaysCreatedAgo = (timestamp) => {
+  const today = new Date()
+  //subtract today's date from timestamp / 86400000ms (ms in a day)
+  const days = Math.floor((today - timestamp) / (1000 * 60 * 60 * 24));
+  // console.log(today / 1000 * 60 * 60 * 24)
+  return days;
+}
 
+$(document).ready(() => {
+  //hard coded object for testing, will be superceded by AJAX request to JSON
   const tweetObject = {
     "user": {
       "name": "Newton",
@@ -21,13 +30,14 @@ $(document).ready(() => {
   //takes in a tweet object and it returns a tweet article
   const createTweetElement = function (tweetObject) {
     //breaking our tweet object into 
-    const {name, avatars, handle} = tweetObject.user;
+    const { name, avatars, handle } = tweetObject.user;
     const content = tweetObject.content.text;
     //we will need a helper function to find the difference between days created and todays date.
     const timeStamp = new Date(tweetObject.created_at);
-    //hard coded function
+    const days = getDaysCreatedAgo(timeStamp);
+    //create our html from our tweet template
     let $tweet = $(
-   `<article class="indiv-tweet">
+      `<article class="indiv-tweet">
       <header class="padding-20">
       <img class="avatar" src=${avatars}> 
       <div>${name}</div>
@@ -39,7 +49,7 @@ $(document).ready(() => {
       </main>
       <footer class="padding-20">
         <div class="date-actions">
-          ${timeStamp} days ago
+          ${days} days ago
           <div class="tweet-icons">
             <i class="fas fa-flag"></i>
             <i class='fas fa-retweet'></i>
@@ -49,10 +59,11 @@ $(document).ready(() => {
       </footer>
     </article>`);
 
-    console.log(name, avatars, handle)
+    // console.log(name, avatars, handle, days, timeStamp, content)
     //return
     return $tweet;
   };
+
 
   // const $tweet = createTweetElement();
   const $tweet = createTweetElement(tweetObject);
