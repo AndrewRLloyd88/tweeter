@@ -95,9 +95,9 @@ $(document).ready(() => {
   //loops through tweets, calls createTweetElement for each tweet
   const renderTweets = (tweets) => {
     // declare object to append to here
-    const tweetContainer = $('#tweet-container')
+    const tweetContainer = $('#tweet-container');
     //empty tweet container
-    tweetContainer.empty()
+    tweetContainer.empty();
     // loop through tweets
     for (const tweet of tweets) {
       // calls createTweetElement for each tweet
@@ -115,9 +115,9 @@ $(document).ready(() => {
     const content = tweetObject.content.text;
     //we will need a helper function to find the difference between days created and todays date.
     const timeStamp = new Date(tweetObject.created_at);
+    //format day into today, 1 day ago or x days ago
     const days = getDaysCreatedAgo(timeStamp);
-    //needed to distinguish between today/day/days when displaying created x day ago
-    // let dayFormat = "days";
+
     //create our html from our tweet template
     //styling for article
     const $article = $('<article>').addClass('indiv-tweet').append('</article>');
@@ -129,57 +129,58 @@ $(document).ready(() => {
     const $handle = $('<div>').addClass('handle').text(handle).append('</div>');
 
     //appending all necessary elements in correct order for header
-    $header.append($avatar, $name, $handle)
-  
+    $header.append($avatar, $name, $handle);
+
     //styling main body of tweet
     const $main = $('<main>').text(content).append('</main>');
 
     //styling footer of tweet
     const $footer = $('<footer>').addClass('padding-20').append('</footer>');
     const $dateActions = $('<div>').addClass('date-actions').text(days).append('</div>');
-    const $tweetIcons = $('<div>').addClass('tweet-icons').append('</div>')
+    const $tweetIcons = $('<div>').addClass('tweet-icons').append('</div>');
     const $flag = $('<i>').addClass('fas fa-flag').append('</i>');
     const $retweet = $('<i>').addClass('fas fa-retweet').append('</i>');
     const $heart = $('<i>').addClass('fas fa-heart').append('</i>');
 
     //individual icons live in a div with class "tweet-icons" for flex to work
-    $tweetIcons.append($flag, $retweet, $heart)
+    $tweetIcons.append($flag, $retweet, $heart);
     //appending tweetIcons div to dateActions
     $dateActions.append($tweetIcons);
     //appending the datestamp and icons to footer
     $footer.append($dateActions);
 
 
-    //   <footer class="padding-20">
-    //     <div class="date-actions">
-    //       ${days}
-    //       <div class="tweet-icons">
-    //         <i class="fas fa-flag"></i>
-    //         <i class='fas fa-retweet'></i>
-    //         <i class='fas fa-heart'></i>
-    //       </div>
-    //     </div>
-    //   </footer>
-    // </article>);
     const $tweet = $($article
       .append($header)
       .append($main)
       .append($footer)
-      // .append($endHeader)
     );
-    // console.log(name, avatars, handle, days, timeStamp, content)
     //return
     return $tweet;
   };
 
-  // //when the button is clicked
-  //   $('button').click(function (event) {
-  //     event.preventDefault();
-  //     const post = $('form').serialize()
-  //     const postedData = $.ajaxPost('/tweets', post)
+  // when the form is submitted
+  //grabbing the form element on the dom
+  const $tweetForm = $('#tweet-form');
+  //grabbing the input field on the dom
+  const $tweetText = $('#tweet-text')
 
-  // //  
-  // });
+  $tweetForm.on('submit', function (event) {
+    //prevent the default browser behaviour
+    event.preventDefault();
+    // serialize the form data for submission to the server
+    const post = $(this).serialize()
+    // submit serialized data to the server via a POST request to `/tweets`
+    $.post('/tweets', post)
+      .then((response) => {
+        //logging out the response of the promise
+        console.log(response);
+        //re-render the tweets
+        renderTweets(data)
+        //clear the form after submission
+        $tweetText.val('');
+      });
+  });
 
 
   // const $tweet = createTweetElement();
