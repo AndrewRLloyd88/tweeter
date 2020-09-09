@@ -1,0 +1,62 @@
+/* encompasses the whole article */
+
+/* outer border of each tweet */
+.indiv-tweet {
+  border: solid;
+  margin: 50px 0;
+}
+
+/* hover effect for individual tweets */
+.indiv-tweet:hover {
+  box-shadow: 10px 10px 5px rgba(4, 1, 146, 0.644);
+}
+
+/* contains avatar handle and tag */
+.indiv-tweet header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* specifically style and right align the @handle */
+header > .handle {
+  margin-left: auto;
+  color: #9ca1b6;
+}
+
+/* add pading to avatar */
+header > .avatar {
+  padding-right: 10px;
+}
+
+/* contains main tweet body */
+.indiv-tweet main {
+width: 96%;
+padding: 0 10px 50px 10px;
+margin: 0 auto;
+border-bottom: solid;
+font-weight: bold;
+}
+
+/* contains date composed and buttons */
+.indiv-tweet footer {
+  font-size: 0.7em;
+}
+
+/* contains timestamp and tweet actions */
+footer > .date-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* color icons blue */
+footer * .tweet-icons {
+  color: #4055A1;
+}
+
+/* generic classes */
+.padding-20 {
+  padding: 10px 20px;
+}
+
