@@ -78,7 +78,7 @@ $(document).ready(() => {
 
     //styling footer of tweet
     const $footer = $('<footer>').addClass('padding-20').append('</footer>');
-    const $dateActions = $('<div>').addClass('date-actions').text(days).append('</div>');
+    const $dateActions = $('<div>').addClass('date-actions').text(days).addClass('date').append('</div>');
     const $tweetIcons = $('<div>').addClass('tweet-icons').append('</div>');
     const $flag = $('<i>').addClass('fas fa-flag').append('</i>');
     const $retweet = $('<i>').addClass('fas fa-retweet').append('</i>');

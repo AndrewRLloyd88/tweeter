@@ -6,10 +6,6 @@
   margin: 50px 0;
 }
 
-/* hover effect for individual tweets */
-.indiv-tweet:hover {
-  box-shadow: 10px 10px 5px rgba(4, 1, 146, 0.644);
-}
 
 /* contains avatar handle and tag */
 .indiv-tweet header {
@@ -23,6 +19,7 @@
 header > .handle {
   margin-left: auto;
   color: #9ca1b6;
+  display: none;
 }
 
 /* add pading to avatar */
@@ -36,7 +33,6 @@ width: 96%;
 padding: 0 10px 50px 10px;
 margin: 0 auto;
 border-bottom: solid;
-font-weight: bold;
 }
 
 /* contains date composed and buttons */
@@ -52,7 +48,31 @@ footer > .date-actions {
 
 /* color icons blue */
 footer * .tweet-icons {
-  color: #4055A1;
+  color: rgba(64, 85, 161, 0.2);
+}
+
+/* hover effect for individual tweets */
+/* hover effect for box shadow outer border */
+.indiv-tweet:hover {
+  box-shadow: 10px 10px 5px #4055A1
+}
+
+/* hover effect for main content to be bold */
+.indiv-tweet:hover .overflow {
+  font-weight: bold;
+}
+
+/* hover effect for date content to be bold */
+.indiv-tweet:hover .date {
+  font-weight: bold;
+}
+
+.indiv-tweet:hover .handle {
+  display: flex;
+}
+
+.indiv-tweet:hover .tweet-icons {
+  color: rgba(64, 85, 161, 1);
 }
 
 /* generic classes */
