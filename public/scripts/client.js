@@ -127,16 +127,21 @@ $(document).ready(() => {
     const charLength = (post.slice(5))
     //  console.log(charLength);
     const maxCharLength = 140;
+    
+    const $errormsg = $('#tweet-error-msg')
 
     //we can use the serialized string to test conditions for form length
     //is the post empty or is the length 0?
     if (charLength === "" || charLength.length === 0) {
-      alert("Hey you! Fill in the tweet box, we're not doing this for the fun of it yo!");
+      // alert("Hey you! Fill in the tweet box, we're not doing this for the fun of it yo!");
+      $errormsg.empty()
+      $errormsg.append('<p><i class="fas fa-exclamation-triangle"></i> Uh, you have to actually type to tweet! Please type something!</p>').slideDown()
       return false;
     };
     //does the post exceed 140 characters?
     if (charLength.length > maxCharLength) {
-      alert("Hey chatty chatty! I know you like to tweet but try typing less per tweet, OK?");
+      $errormsg.empty()
+      $errormsg.append('<p><i class="fas fa-exclamation-triangle"></i> You\'re too chatty! Please type less than 140 characters to tweet!</p>').slideDown()
       return false;
     };
     //can we use this.children("output") to reset counter?

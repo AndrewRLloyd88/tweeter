@@ -28,6 +28,9 @@
    <!-- Individual Tweet (article) styling -->
    <link rel="stylesheet" href="/styles/individual-tweet.css" type="text/css" />
 
+    <!-- Error message styling -->
+    <link rel="stylesheet" href="/styles/error-styling.css" type="text/css" />
+
   <!-- External JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://kit.fontawesome.com/22993f5453.js" crossorigin="anonymous"></script>
@@ -67,6 +70,7 @@
   <main class="container">
     <section class="new-tweet">
       <h2>Compose Tweet</h2>
+      <div id="tweet-error-msg" class="tweet-error-msg"></div>
       <form id="tweet-form">
         <label for="tweet-text" class="bold">What are you humming about?</label>
         <textarea name="text" id="tweet-text"></textarea>

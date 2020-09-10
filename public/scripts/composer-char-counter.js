@@ -4,6 +4,7 @@
 $(document).ready(() => {
   //using keyup to immediately get the value in the textarea
   $("#tweet-text").on('input', function() {
+    const $errormsg = $('#tweet-error-msg')
     // console.log(charLength);
     //charCount is the length of chars inputted by user on textarea
     let charCount = $(this).val().length;
@@ -11,6 +12,7 @@ $(document).ready(() => {
     let charLimit = 140;
 
     // console.log(this).children("div")
+    $errormsg.slideUp().empty()
 
     //counter should be normal colour under 140 chars
     if (charCount <= charLimit) {

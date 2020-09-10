@@ -1,0 +1,13 @@
+/* styling for our error message */
+.tweet-error-msg {
+  display: none;
+  border: 1px solid #ff0000;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0.5em;
+  width: 100%;
+  text-align: center;
+  color: #ff0000;
+  font-family: "Source Sans Pro", "sans-serif";
+  border-color: #ff0000;
+}
