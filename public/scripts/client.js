@@ -37,7 +37,7 @@ $(document).ready(() => {
   //loadTweets - uses AJAX to fetch(GET) the data from our /tweets route
   const loadTweets = () => {
     //make a GET request to /tweets
-    $.get('/tweets', function(data) {
+    $.get('/tweets', function (data) {
       console.log(data);
       renderTweets(data);
     });
@@ -63,7 +63,7 @@ $(document).ready(() => {
 
 
   //takes in a tweet object and it returns a tweet article
-  const createTweetElement = function(tweetObject) {
+  const createTweetElement = function (tweetObject) {
     //breaking our tweet object into
     const { name, avatars, handle } = tweetObject.user;
     const content = tweetObject.content.text;
@@ -71,7 +71,7 @@ $(document).ready(() => {
     const timeStamp = new Date(tweetObject.created_at);
     //format day into today, 1 day ago or x days ago
     const days = getDaysCreatedAgo(timeStamp);
- 
+
     //create our html from our tweet template
     //styling for article
     const $article = $('<article>').addClass('indiv-tweet').append('</article>');
@@ -84,7 +84,7 @@ $(document).ready(() => {
 
     //appending all necessary elements in correct order for header
     $header.append($avatar, $name, $handle);
-  
+
     //styling main body of tweet
     const $main = $('<main>').text(content).append('</main>');
 
@@ -115,20 +115,41 @@ $(document).ready(() => {
 
   // when the form is submitted
   //grabbing the form element on the dom
-    const $tweetForm = $('#tweet-form');
-    //grabbing the input field on the dom
-    const $tweetText = $('#tweet-text')
+  const $tweetForm = $('#tweet-form');
+  //grabbing the input field on the dom
+  const $tweetText = $('#tweet-text')
 
-    $tweetForm.on('submit', function (event) {
-      //prevent the default browser behaviour
-      event.preventDefault();
-       // serialize the form data for submission to the server
-      const post = $(this).serialize()
-      // submit serialized data to the server via a POST request to `/tweets`
-      $.post('/tweets', post)
+  $tweetForm.on('submit', function (event) {
+    event.preventDefault();
+    // serialize the form data for submission to the server
+    const post = $(this).serialize()
+    //we can use charlength to test "" or by slicing text= from the serialized post test using .length
+    const charLength = (post.slice(5))
+    //  console.log(charLength);
+    const maxCharLength = 140;
+
+    //we can use the serialized string to test conditions for form length
+    //is the post empty or is the length 0?
+    if (charLength === "" || charLength.length === 0) {
+      alert("Hey you! Fill in the tweet box, we're not doing this for the fun of it yo!");
+      return false;
+    };
+    //does the post exceed 140 characters?
+    if (charLength.length > maxCharLength) {
+      alert("Hey chatty chatty! I know you like to tweet but try typing less per tweet, OK?");
+      return false;
+    };
+    //can we use this.children("output") to reset counter?
+    // console.log(this);
+    // console.log(event)
+    //prevent the default browser behaviour
+    // submit serialized data to the server via a POST request to `/tweets`
+    $.post('/tweets', post)
       .then((response) => {
         //logging out the response of the promise
-        console.log(response);
+        //reset the output counter to 140
+        $(this).find('output').text("140")
+        // console.log(response);
         //re-render the tweets
         loadTweets();
         //clear the form after submission
