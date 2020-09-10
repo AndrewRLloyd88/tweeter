@@ -25,11 +25,11 @@
   <!-- Tweet Form -->
   <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
 
-   <!-- Individual Tweet (article) styling -->
-   <link rel="stylesheet" href="/styles/individual-tweet.css" type="text/css" />
+  <!-- Individual Tweet (article) styling -->
+  <link rel="stylesheet" href="/styles/individual-tweet.css" type="text/css" />
 
-    <!-- Error message styling -->
-    <link rel="stylesheet" href="/styles/error-styling.css" type="text/css" />
+  <!-- Error message styling -->
+  <link rel="stylesheet" href="/styles/error-styling.css" type="text/css" />
 
   <!-- External JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -46,11 +46,16 @@
       <span class="nav-title">
         tweeter
       </span>
-      <div>
+      <div id="nav-toggle" class="nav-toggle">
         <span class="bold">
           Write
         </span>
-        a new tweet
+        <span>
+          a new tweet
+          <div class="nav-arrow">
+            <i class="fas fa-arrow-down"></i>
+          </div>
+        </span>
       </div>
     </div>
   </nav>
@@ -80,7 +85,7 @@
         </div>
       </form>
     </section>
-   
+
     <section id="tweet-container" class="tweet-container">
 
       <!-- <article class="indiv-tweet">
@@ -153,6 +158,7 @@
 
   </main>
   <script src="./scripts/composer-char-counter.js"></script>
+  <script src="./scripts/toggle-tweet-bar.js"></script>
 </body>
 
 </html>
