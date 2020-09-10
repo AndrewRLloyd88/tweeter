@@ -7,6 +7,10 @@ button {
   color: #ffffff;
 }
 
+button:hover {
+  box-shadow: 3px 3px 3px #4056A1;
+}
+
 /* new tweet textarea formatting */
 #tweet-text {
   outline: none;
