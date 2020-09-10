@@ -55,12 +55,14 @@ footer * .tweet-icons {
   color: #4055A1;
 }
 
-/* i {
-  margin: 0 10;
-} */
-
 /* generic classes */
+
+/* add a padding to all of our content within article */
 .padding-20 {
   padding: 10px 20px;
 }
 
+/* Solve issue #2 on github with long tweets going off page*/
+.overflow {
+  overflow-wrap: break-word;
+}

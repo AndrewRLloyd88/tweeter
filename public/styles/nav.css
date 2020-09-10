@@ -1,3 +1,4 @@
+/* styling for our nav bar */
 .nav-bar {
   background-color: #4056A1;
   height: 120px;
@@ -10,12 +11,14 @@
   align-items: center;
 }
 
+/* allows us to set the correct padding for the container in nav */
 .nav-content {
   margin: 1.5em;
   width: 100%;
   align-items: center;
 } 
 
+/* Style our Tweeter logo */
 .nav-title {
   font-family: "Bungee", "sans-serif";
   color: #ffffff;
@@ -40,19 +43,24 @@ color: #ff0000;
   }
 }
 
+/* when we hover over our toggler let user see it's a clickable link */
 .nav-toggle:hover {
   cursor: pointer;
 }
 
 /* generic classes */
+
+/* bold our text */
 .bold {
   font-weight: bold;
 }
 
+/* apply flex */
 .flex-row {
   display: flex;
 }
 
+/* space content at opposing ends with flex */
 .space-between {
   justify-content: space-between;
 }

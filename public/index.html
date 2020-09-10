@@ -78,7 +78,7 @@
       <div id="tweet-error-msg" class="tweet-error-msg"></div>
       <form id="tweet-form">
         <label for="tweet-text" class="bold">What are you humming about?</label>
-        <textarea name="text" id="tweet-text"></textarea>
+        <textarea name="text" id="tweet-text" autofocus></textarea>
         <div class="flex-row space-between margin-top">
           <button type="submit">Tweet</button>
           <output name="counter" class="counter" for="tweet-text">140</output>
@@ -86,77 +86,13 @@
       </form>
     </section>
 
+    <!-- Dyanamically render the tweets in this section  -->
     <section id="tweet-container" class="tweet-container">
-
-      <!-- <article class="indiv-tweet">
-        <header class="padding-20">
-          <img class="avatar" src="https://i.imgur.com/DVpDmdR.png"> 
-          <div>Newton</div>
-          <div class="handle">@SirIsaac</div>
-  
-        </header>
-        <main>
-          Gott ist tot“ (help·info); also known as The Death of God) is a widely quoted statement by German philosopher Friedrich Nietzsche. Nietzsche used the phrase to express his idea that the Enlightenment had eliminated the possibility of the existence of God.
-        </main>
-        <footer class="padding-20">
-          <div class="date-actions">
-            10 days ago
-         <div class="tweet-icons">
-            <i class="fas fa-flag"></i>
-            <i class='fas fa-retweet'></i>
-            <i class='fas fa-heart'></i>
-         </div>
-          </div>
-        </footer>
-      </article>
-
-      <article class="indiv-tweet">
-        <header class="padding-20">
-          <img class="avatar" src="https://i.imgur.com/DVpDmdR.png"> 
-          <div>Newton</div>
-          <div class="handle">@SirIsaac</div>
-  
-        </header>
-        <main>
-          Gott ist tot“ (help·info); also known as The Death of God) is a widely quoted statement by German philosopher Friedrich Nietzsche. Nietzsche used the phrase to express his idea that the Enlightenment had eliminated the possibility of the existence of God.
-        </main>
-        <footer class="padding-20">
-          <div class="date-actions">
-            10 days ago
-         <div class="tweet-icons">
-            <i class="fas fa-flag"></i>
-            <i class='fas fa-retweet'></i>
-            <i class='fas fa-heart'></i>
-         </div>
-          </div>
-        </footer>
-      </article>
-
-      <article class="indiv-tweet">
-        <header class="padding-20">
-          <img class="avatar" src="https://i.imgur.com/DVpDmdR.png"> 
-          <div>Newton</div>
-          <div class="handle">@SirIsaac</div>
-  
-        </header>
-        <main>
-          Gott ist tot“ (help·info); also known as The Death of God) is a widely quoted statement by German philosopher Friedrich Nietzsche. Nietzsche used the phrase to express his idea that the Enlightenment had eliminated the possibility of the existence of God.
-        </main>
-        <footer class="padding-20">
-          <div class="date-actions">
-            10 days ago
-         <div class="tweet-icons">
-            <i class="fas fa-flag"></i>
-            <i class='fas fa-retweet'></i>
-            <i class='fas fa-heart'></i>
-         </div>
-          </div>
-        </footer>
-      </article> -->
 
     </section>
 
   </main>
+  <!-- Our additional scripts live here  -->
   <script src="./scripts/composer-char-counter.js"></script>
   <script src="./scripts/toggle-tweet-bar.js"></script>
 </body>

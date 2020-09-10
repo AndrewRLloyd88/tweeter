@@ -1,3 +1,4 @@
+/* styling our page header containing our name and avatar */
 .page-header {
   height: 400px;
   background-color: #ef8354;
@@ -10,13 +11,17 @@
   margin-top: 120px;
 } 
 
+
 /* generic classes */
+
+/* used for our full name */
 .name {
   color: white;
   font-weight: 300;
   margin: 10px 0;
 }
 
+/* used for the span */
 .bold {
   font-weight: 600;
 } 

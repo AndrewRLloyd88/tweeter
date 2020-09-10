@@ -35,18 +35,23 @@ button {
 }
 
 /* generic classes */
+
+/* apply flex row */
 .flex-row {
   display: flex;
 }
 
+/* space content evenly in container */
 .space-around {
   align-content: space-around;
 }
 
+/* add margin of 15px to space out our button/counter from input */
 .margin-top {
   margin-top: 15px;
 }
 
+/* bold for the counter, what are you humming about etc... */
 .bold {
   font-weight: bold;
 }

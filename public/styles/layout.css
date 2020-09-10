@@ -26,6 +26,7 @@ body {
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
 
+ /* used to constrain our main content to 90% width of the page*/
  .container {
   width: 90%;
   margin: 0 auto;
