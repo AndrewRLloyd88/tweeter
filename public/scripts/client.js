@@ -1,9 +1,3 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
-
 //needed for jQuery and eslint
 /* global document */
 /* eslint-env jquery */
@@ -13,12 +7,11 @@ const getDaysCreatedAgo = (timestamp) => {
   const today = new Date();
   //subtract today's date from timestamp / 86400000ms (ms in a day)
   const days = Math.floor((today - timestamp) / (1000 * 60 * 60 * 24));
-  //check what value days is to return correct suffix
+  //check what value days is to return correct verbiage
   return formatDay(days);
-  // console.log(today / 1000 * 60 * 60 * 24)
 };
 
-//helper function to determine suffix for today/day/days
+//helper function to determine correct verbiage for today/day/days
 const formatDay = (days) => {
   if (days === 0) {
     days = "Today";
@@ -31,48 +24,43 @@ const formatDay = (days) => {
 };
 
 $(document).ready(() => {
-  //hard coded object for testing, will be superceded by AJAX request to JSON
-  // Fake data taken from initial-tweets.json
-
-  //loadTweets - uses AJAX to fetch(GET) the data from our /tweets route
+  // this function uses AJAX to fetch(GET) the data from our /tweets route
   const loadTweets = () => {
     //make a GET request to /tweets
-    $.get('/tweets', function (data) {
-      console.log(data);
+    $.get('/tweets', function(data) {
       renderTweets(data);
     });
-  }
-
+  };
+  //compass advised to call loadTweets() directly after it was declared and stored
   loadTweets();
 
-
-  //loops through tweets, calls createTweetElement for each tweet
+  //this function loops through tweets, calls createTweetElement for each tweet in our object
   const renderTweets = (tweets) => {
     // declare object to append to here
     const tweetContainer = $('#tweet-container');
-    //empty tweet container
+    //empty tweet container so we don't duplicate our tweets every time
     tweetContainer.empty();
-    // loop through tweets
+    // iterate throguh our array of tweets
     for (const tweet of tweets) {
-      // calls createTweetElement for each tweet
+      // build the dom elements for each tweet using createTweetElement
       const $tweet = createTweetElement(tweet);
-      // takes return value and appends it to the tweets container
+      // prepends each built tweet to our tweet container so tweets show from most recent - least recent
       tweetContainer.prepend($tweet);
     }
   };
 
-
-  //takes in a tweet object and it returns a tweet article
-  const createTweetElement = function (tweetObject) {
-    //breaking our tweet object into
+  //takes in a tweet object from the array of tweets and builds out it's DOM elements
+  const createTweetElement = function(tweetObject) {
+    //destructure our dynamic properties from our tweetObject
     const { name, avatars, handle } = tweetObject.user;
+    //grab the users tweet
     const content = tweetObject.content.text;
-    //we will need a helper function to find the difference between days created and todays date.
+    //format the grabbed timestamp as a date
     const timeStamp = new Date(tweetObject.created_at);
-    //format day into today, 1 day ago or x days ago
+    //use getDaysCreatedAgo to get our correct verbiage and a day number from our datestamp
     const days = getDaysCreatedAgo(timeStamp);
 
-    //create our html from our tweet template
+    //create our Dom elements from our tweet template - using .text() to stop injection attacks
     //styling for article
     const $article = $('<article>').addClass('indiv-tweet').append('</article>');
 
@@ -82,11 +70,11 @@ $(document).ready(() => {
     const $name = $('<div>' + name + '</div>');
     const $handle = $('<div>').addClass('handle').text(handle).append('</div>');
 
-    //appending all necessary elements in correct order for header
+    //appending all necessary elements in correct order for header - needed for flex to work
     $header.append($avatar, $name, $handle);
 
     //styling main body of tweet
-    const $main = $('<main>').text(content).append('</main>');
+    const $main = $('<main>').text(content).addClass('overflow').append('</main>');
 
     //styling footer of tweet
     const $footer = $('<footer>').addClass('padding-20').append('</footer>');
@@ -103,13 +91,13 @@ $(document).ready(() => {
     //appending the datestamp and icons to footer
     $footer.append($dateActions);
 
-
+    //appending the above composed elements into our final tweet object
     const $tweet = $($article
       .append($header)
       .append($main)
       .append($footer)
     );
-    //return
+    //return our tweet to renderTweets()
     return $tweet;
   };
 
@@ -117,55 +105,44 @@ $(document).ready(() => {
   //grabbing the form element on the dom
   const $tweetForm = $('#tweet-form');
   //grabbing the input field on the dom
-  const $tweetText = $('#tweet-text')
+  const $tweetText = $('#tweet-text');
 
-  $tweetForm.on('submit', function (event) {
+  $tweetForm.on('submit', function(event) {
+    //prevents default form behaviour to stop page from refreshing
     event.preventDefault();
     // serialize the form data for submission to the server
-    const post = $(this).serialize()
-    //we can use charlength to test "" or by slicing text= from the serialized post test using .length
-    const charLength = (post.slice(5))
-    //  console.log(charLength);
+    const post = $(this).serialize();
+    //we can use the searialzed form data (post) - charlength to test "" or by slicing text= from the serialized post test using .length
+    const charLength = (post.slice(5));
+    //define our max character length -140
     const maxCharLength = 140;
-    
-    const $errormsg = $('#tweet-error-msg')
+    //grabbing our error div
+    const $errormsg = $('#tweet-error-msg');
 
-    //we can use the serialized string to test conditions for form length
     //is the post empty or is the length 0?
     if (charLength === "" || charLength.length === 0) {
-      // alert("Hey you! Fill in the tweet box, we're not doing this for the fun of it yo!");
-      $errormsg.empty()
-      $errormsg.append('<p><i class="fas fa-exclamation-triangle"></i> Uh, you have to actually type to tweet! Please type something!</p>').slideDown()
+      //clear the container to stop duplicate messages and re-append our error message
+      $errormsg.empty();
+      $errormsg.append('<p><i class="fas fa-exclamation-triangle"></i> Uh, you have to actually type to tweet! Please type something!</p>').slideDown();
       return false;
-    };
+    }
     //does the post exceed 140 characters?
     if (charLength.length > maxCharLength) {
-      $errormsg.empty()
-      $errormsg.append('<p><i class="fas fa-exclamation-triangle"></i> You\'re too chatty! Please type less than 140 characters to tweet!</p>').slideDown()
+      //clear the container to stop duplicate messages and re-append our error message
+      $errormsg.empty();
+      $errormsg.append('<p><i class="fas fa-exclamation-triangle"></i> You\'re too chatty! Please type less than 140 characters to tweet!</p>').slideDown();
       return false;
-    };
-    //can we use this.children("output") to reset counter?
-    // console.log(this);
-    // console.log(event)
-    //prevent the default browser behaviour
-    // submit serialized data to the server via a POST request to `/tweets`
+    }
+
+    //if all checks above are satisfied submit serialized data to the server via a POST request to `/tweets`
     $.post('/tweets', post)
-      .then((response) => {
-        //logging out the response of the promise
+      .then(() => {
         //reset the output counter to 140
-        $(this).find('output').text("140")
-        // console.log(response);
+        $(this).find('output').text("140");
         //re-render the tweets
         loadTweets();
         //clear the form after submission
         $tweetText.val('');
       });
   });
-
-
-  // const $tweet = createTweetElement();
-  // const $tweet = createTweetElement(tweetObject);
-  // console.log($tweet)
-  // $('#tweet-container').append($tweet);
-
 });
