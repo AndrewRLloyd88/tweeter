@@ -1,13 +1,19 @@
 /* styling the tweet button */
-button {
+.compose-tweet {
   border: none;
-  font-size: medium;
   font-family: "Bungee", "sans-serif";
   background-color:#4056A1;
   color: #ffffff;
 }
 
-button:hover {
+.nav-toggle {
+  border: none;
+  font-family: "Source Sans Pro", "sans-serif";
+  background-color:#4056A1;
+  color: #ffffff;
+}
+
+.compose-tweet:hover {
   box-shadow: 3px 3px 3px #4056A1;
 }
 
