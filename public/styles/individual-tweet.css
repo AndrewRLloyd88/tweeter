@@ -6,7 +6,6 @@
   margin: 50px 0;
 }
 
-
 /* contains avatar handle and tag */
 .indiv-tweet header {
   width: 100%;
@@ -86,3 +85,5 @@ footer * .tweet-icons {
 .overflow {
   overflow-wrap: break-word;
 }
+
+
